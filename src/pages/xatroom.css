@@ -1,0 +1,65 @@
+section {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.chat-area {
+    padding-top: 0;
+    max-height: 70vh;
+    overflow-y: scroll;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.chat-area>div {
+    padding: 0;
+}
+
+.message {
+    width: 70%;
+    margin: 0;
+}
+
+.user {
+    margin-right: auto;
+}
+
+.bot {
+    margin-left: auto;
+}
+
+.type-area {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-items: stretch;
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+}
+
+.type-area form {
+    grid-area: 1 / 1 / 2 / 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    gap: 5px;
+}
+
+.type-area form textarea {
+    padding-left: 5px;
+    flex: 1;
+}
+
+section button {
+    margin-right: 5px;
+}
+
+section button:last-child {
+    margin-right: 0;
+}
+
+/* 
+.type-area > button {
+} */

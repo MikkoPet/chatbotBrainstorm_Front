@@ -1,0 +1,17 @@
+.item {
+    padding: 0;
+    margin: 0;
+}
+
+.item button {
+    font-weight: 600;
+}
+
+.item button:first-child {
+    margin-right: 5px;
+    width: 50vw;
+}
+
+.item button:last-child {
+    width: 40px;
+}
