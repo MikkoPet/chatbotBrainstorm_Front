@@ -11,3 +11,167 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button,
+input,
+textarea,
+div,
+section,
+article {
+  border-radius: 30px;
+  padding: 10px;
+}
+
+button,
+div,
+section,
+article {
+  filter: drop-shadow(0px 5px 2px #66666620);
+}
+
+section,
+article {
+  padding-bottom: 35px;
+  margin-bottom: 10px;
+}
+
+div {
+  padding-left:5%;
+  padding-right:5%; 
+  margin-bottom: 10px;
+}
+
+section {
+  margin-top: 15vh;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+input,
+textarea {
+  border: 0;
+  padding: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input:last-child {
+  padding: 10px;
+}
+
+button {
+  border: 0;
+}
+
+label {
+  margin-top: 5px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.purple {
+  background-color: #4B2980;
+  color: white;
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+.green {
+  background-color: #1FDAB7;
+  color: initial;
+}
+
+.red {
+  background-color: #CC2752;
+  color: white;
+
+}
+
+.yellow {
+  background-color: #FED700;
+  color: initial;
+}
+
+.white {
+  background-color: white;
+  color: initial;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.field-text {
+  font-weight: 200;
+  color: #666666;
+}
+
+.background-beautiful {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/06/Xi_Jinping_in_July_2024_%28cropped%29.jpg);
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.background-beautiful::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.92); 
+}
+
+.background-beautiful>section {
+  padding-bottom: 15px;
+}
+
+.screen {
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.screen h1 {
+  padding-left: 5%;
+  padding-top: 10%;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.table>button {
+    width: 50vw;
+    font-weight: 600;
+}
+
+.white>button {
+  width: 100%;
+}
