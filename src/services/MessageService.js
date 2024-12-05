@@ -12,11 +12,14 @@ const auth = localStorage.getItem("token");
 export const fetchMessages = async (id) => {
 
     try {
-        const response = await apiService.get(API_BASE_URL + '/rooms/' + id, {
-            headers: {
-                'Authorization': 'Bearer ' + auth,
-            }
-        });
+        const response = await apiService.get(API_BASE_URL + '/rooms/' + id
+            // , 
+            // {
+            // headers: {
+            //     'Authorization': 'Bearer ' + auth,
+            // }
+        // }
+    );
         return response.data.messages;
     } catch (error) {
         throw error;

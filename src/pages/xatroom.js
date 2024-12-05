@@ -29,6 +29,7 @@ function Xatroom() {
     const eventSource = new EventSource(url);
     
     eventSource.onmessage = (event) => {
+        console.log(event);
       const message = JSON.parse(event.data).status;
       const messageElement = document.createElement('p');
       messageElement.textContent = message;
@@ -50,7 +51,6 @@ function Xatroom() {
     
     const token = localStorage.getItem("token");
     const user = jwtDecode(token);
-    console.log(user);
 
     const [formData, setFormData] = useState({
         'content' : "",
@@ -69,7 +69,6 @@ function Xatroom() {
     async function handleSubmit(e) {
         try {
             e.preventDefault();
-            console.log(formData);
             const result = await postData('messages', formData);
         } catch (error) {
             console.error('Error posting data:', error);
