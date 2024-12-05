@@ -8,7 +8,7 @@ section>div {
 .chat-area {
     padding: 0;
     padding-bottom: 10%;
-    max-height: 70vh;
+    max-height: 55vh;
     overflow-y: scroll;
     margin: 0;
     border-radius: 0;

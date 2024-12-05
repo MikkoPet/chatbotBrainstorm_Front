@@ -8,7 +8,7 @@ const apiService = axios.create({
 
 export const postData = async (endpoint, data) => {
     try {
-        const response = await apiService.get('/' + endpoint + '/', data);
+        const response = await apiService.post('/' + endpoint, data);
         return response.data;
     } catch (error) {
         throw error;
