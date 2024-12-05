@@ -1,17 +1,25 @@
-section {
+section,
+section>div {
+    margin-top: 15px;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
 .chat-area {
-    padding-top: 0;
+    padding: 0;
+    padding-bottom: 10%;
     max-height: 70vh;
     overflow-y: scroll;
-    margin-bottom: 0;
+    margin: 0;
     border-radius: 0;
 }
 
 .chat-area>div {
+    padding: 0;
+}
+
+.chat-area p {
+    margin: 0;
     padding: 0;
 }
 
