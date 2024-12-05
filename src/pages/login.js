@@ -16,8 +16,9 @@ function Login() {
       
       }
 
-    async function handleSubmit() {
+    async function handleSubmit(e) {
         try {
+            e.preventDefault();
             const email = formData.email;
             const password = formData.password;
             const result = await postUser('login', {email, password});
