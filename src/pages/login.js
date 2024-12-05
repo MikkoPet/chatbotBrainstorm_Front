@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { postData } from '../services/PostService';
+import { useNavigate } from 'react-router-dom';
+import { postUser } from '../services/UserService';
 
 function Login() {
 
@@ -16,9 +17,15 @@ function Login() {
       
       }
 
-    async function handleSubmit() {
+      let navigate = useNavigate();
+    
+    async function handleSubmit(e) {
         try {
-            const result = await postData('endpoint', formData);
+            e.preventDefault();
+            const email = formData.email;
+            const password = formData.password;
+            const result = await postUser('login', {email, password});
+            navigate('/');
         } catch (error) {
             console.error('Error posting data:', error);
         }
@@ -26,32 +33,33 @@ function Login() {
 
 
     return (
-        <section class="white">
-            <div class="purple">
+        <section className="white">
+            <div className="purple">
                 <h1> Bienvenue sur XI.X@ </h1>
 
                 <form onSubmit={handleSubmit}>
-                    <div class="input-field white">
-                        <label for="email" class="bold"> Courriel </label>
+                    <div className="input-field white">
+                        <label htmlFor="email" className="bold"> Courriel </label>
                         <input type="text" name="email" placeholder="grosQdu59@gmail.com"
                         value = {formData.email}
                         onChange={handleChange}
-                        class="field-text" />
+                        className="field-text" />
                     </div>
 
-                    <div class="input-field white">
-                        <label for="password" class="bold"> Mot de passe </label>
+                    <div className="input-field white">
+                        <label htmlFor="password" className="bold"> Mot de passe </label>
                         <input type="text" name="password" placeholder="********"
                         value = {formData.password}
                         onChange={handleChange}
-                        class="field-text" />
+                        className="field-text" />
                     </div>
                     <input type="submit" name="submit" 
-                        class="black" />
+                        onSubmit={handleSubmit}
+                        className="black" />
 
                 </form>
             </div>
-            <button class="green"> Créer un compte </button>
+            <button className="green"> Créer un compte </button>
         </section>
     );
 }
