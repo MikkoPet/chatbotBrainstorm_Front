@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { postUser } from '../services/UserService';
 
 function Login() {
@@ -16,12 +17,15 @@ function Login() {
       
       }
 
+      let navigate = useNavigate();
+    
     async function handleSubmit(e) {
         try {
             e.preventDefault();
             const email = formData.email;
             const password = formData.password;
             const result = await postUser('login', {email, password});
+            navigate('/');
         } catch (error) {
             console.error('Error posting data:', error);
         }
