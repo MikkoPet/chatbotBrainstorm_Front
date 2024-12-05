@@ -48,11 +48,12 @@ function Xatroom() {
         fetchData();
     }, []);
     
+    const userId = localStorage.getItem("token");
 
     const [formData, setFormData] = useState({
         'content' : "",
         'room' : "https://localhost:8000/api/rooms/" + {id},
-        'user': "",
+        'user': {userId},
     });
     
     function handleChange(event) {
