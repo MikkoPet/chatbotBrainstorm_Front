@@ -5,6 +5,7 @@ import './xatroom.css';
 import Message from '../components/Message';
 import { fetchMessages } from '../services/MessageService';
 import { postData } from '../services/PostService';
+import { jwtDecode } from 'jwt-decode';
 
 function auto_grow(e) {
     e.target.style.height = 'inherit';
@@ -28,11 +29,11 @@ function Xatroom() {
     const eventSource = new EventSource(url);
     
     eventSource.onmessage = (event) => {
-      console.log(JSON.parse(event.data))
-      const message = JSON.parse(event.data).status
-      const messageElement = document.createElement('p')
-      messageElement.textContent = message
-      document.getElementById('mercure-content').appendChild(messageElement)
+        console.log(event);
+      const message = JSON.parse(event.data).status;
+      const messageElement = document.createElement('p');
+      messageElement.textContent = message;
+      document.getElementById('type-area').appendChild(messageElement);
     }
     
     async function fetchData() {
@@ -48,12 +49,13 @@ function Xatroom() {
         fetchData();
     }, []);
     
-    const userId = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    const user = jwtDecode(token);
 
     const [formData, setFormData] = useState({
         'content' : "",
-        'room' : "https://localhost:8000/api/rooms/" + {id},
-        'user': {userId},
+        'room' : "https://localhost:8000/api/rooms/" + id,
+        'user': "https://localhost:8000/api/users/" + user.id,
     });
     
     function handleChange(event) {
@@ -64,9 +66,10 @@ function Xatroom() {
       
       }
 
-    async function handleSubmit() {
+    async function handleSubmit(e) {
         try {
-            const result = await postData('Messages', formData);
+            e.preventDefault();
+            const result = await postData('messages', formData);
         } catch (error) {
             console.error('Error posting data:', error);
         }
@@ -87,9 +90,9 @@ function Xatroom() {
                         <Message data={message} />
                     )) : ''}
                 </section>
-                <section className="type-area">
+                <section className="type-area" id="type-area">
                     <form onSubmit={handleSubmit}>
-                        <textarea type="text" name="message" placeholder="Salut, Xi.X@ !"
+                        <textarea type="text" name="content" placeholder="Salut, Xi.X@ !"
                             className="input-field white field-text"
                             onInput={auto_grow} 
                             onChange={handleChange} />

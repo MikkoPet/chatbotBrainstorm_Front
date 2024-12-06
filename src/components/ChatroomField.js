@@ -1,16 +1,19 @@
+import { useNavigate } from 'react-router-dom';
 import './ChatroomField.css';
 
-function ChatroomButton() {
-    return (
-        <button class="white"> Chatroom Name </button>
-    );
-}
 
-export default function ChatroomField() {
+export default function ChatroomField(data) {
+
+    let navigate = useNavigate();
+
+    const handleRedirect = () => {
+        navigate('/xatroom/' + data.data.id);
+    };
+
     return (
-        <div class="item">
-            <ChatroomButton />
-            <button class="red"> X </button>
+        <div className="item">
+            <button className="white" onClick={handleRedirect}> {data.data.title} </button> 
+            <button className="red"> X </button>
         </div>
     );
 }

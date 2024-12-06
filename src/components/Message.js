@@ -3,7 +3,6 @@ import { ContextParser } from "jsonld-context-parser";
 export default function Message({data}) {
 
     const myParser = new ContextParser();
-    console.log(data.content);
 
     return (
         <div>
