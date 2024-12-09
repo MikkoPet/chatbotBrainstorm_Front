@@ -1,15 +1,18 @@
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
-export const decodeToken = async (user, navigate) => {
+export const decodeToken = (navigate) => {
     try {
         const token = localStorage.getItem("token");
-        if (!token || typeof token != String) {
+
+        if (!token) {
             throw new Error("No token found");
         }
-        user = jwtDecode(token);
+
+        const decodedUser = jwtDecode(token);
+        return decodedUser;
     } catch (error) {
         console.error("Error decoding token:", error.message);
-        navigate('/login');
+        navigate("/login");
+        return null;
     }
-
-}
+};

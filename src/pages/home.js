@@ -1,7 +1,6 @@
 import ChatroomField from "../components/ChatroomField";
 import { fetchRooms } from "../services/RoomService";
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { decodeToken } from "../services/TokenDecodeService";
 
