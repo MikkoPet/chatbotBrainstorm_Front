@@ -2,11 +2,15 @@ import ChatroomField from "../components/ChatroomField";
 import { fetchRooms } from "../services/RoomService";
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { decodeToken } from "../services/TokenDecodeService";
 
 function Home() {
 
-  const token = localStorage.getItem("token");
-  const user = jwtDecode(token);
+  let navigate = useNavigate();
+  let user = {};
+
+    decodeToken(user, navigate);
 
   const [rooms, setRooms] = useState(null);
 

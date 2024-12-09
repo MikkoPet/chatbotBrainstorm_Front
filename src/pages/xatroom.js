@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import { fetchMessages } from '../services/MessageService';
 import { postData } from '../services/PostService';
 import { jwtDecode } from 'jwt-decode';
+import { decodeToken } from "../services/TokenDecodeService";
 
 function auto_grow(e) {
     e.target.style.height = 'inherit';
@@ -14,7 +15,8 @@ function auto_grow(e) {
 
 function Xatroom() {
     const id = useParams().id;
-    
+    const title = useParams().title;
+
     let navigate = useNavigate();
 
     const handleRedirect = () => {
@@ -25,17 +27,17 @@ function Xatroom() {
 
     const url = new URL('http://localhost:3000/.well-known/mercure');
     url.searchParams.append('topic', 'https://xixat.cn/rooms/' + id);
-    
+
     const eventSource = new EventSource(url);
-    
+
     eventSource.onmessage = (event) => {
         console.log(event);
-      const message = JSON.parse(event.data).status;
-      const messageElement = document.createElement('p');
-      messageElement.textContent = message;
-      document.getElementById('type-area').appendChild(messageElement);
+        const message = JSON.parse(event.data).status;
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        document.getElementById('type-area').appendChild(messageElement);
     }
-    
+
     async function fetchData() {
         try {
             const result = await fetchMessages(id);
@@ -44,27 +46,28 @@ function Xatroom() {
             console.error('Error fetching data:', error);
         }
     }
-    
+
     useEffect(() => {
         fetchData();
     }, []);
-    
-    const token = localStorage.getItem("token");
-    const user = jwtDecode(token);
+
+    let user;
+
+    decodeToken(user, navigate);
 
     const [formData, setFormData] = useState({
-        'content' : "",
-        'room' : "https://localhost:8000/api/rooms/" + id,
+        'content': "",
+        'room': "https://localhost:8000/api/rooms/" + id,
         'user': "https://localhost:8000/api/users/" + user.id,
     });
-    
+
     function handleChange(event) {
 
         const { name, value } = event.target;
-      
+
         setFormData({ ...formData, [name]: value });
-      
-      }
+
+    }
 
     async function handleSubmit(e) {
         try {
@@ -83,10 +86,10 @@ function Xatroom() {
                 <button className="purple bold"
                     onClick={handleRedirect}> &#60; </button >
 
-                <h1> Chatroom name variable </h1>
+                <h1> Mon xat: </h1>
 
                 <section className="chat-area">
-                    { messages ? messages.map((message) => (
+                    {messages ? messages.map((message) => (
                         <Message data={message} />
                     )) : ''}
                 </section>
@@ -94,7 +97,7 @@ function Xatroom() {
                     <form onSubmit={handleSubmit}>
                         <textarea type="text" name="content" placeholder="Salut, Xi.X@ !"
                             className="input-field white field-text"
-                            onInput={auto_grow} 
+                            onInput={auto_grow}
                             onChange={handleChange} />
                         <input type="submit" name=">"
                             className="black bold" value="^" />

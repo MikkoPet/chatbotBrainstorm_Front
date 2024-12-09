@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { postData } from "../services/PostService";
+import { useNavigate } from 'react-router-dom';
+import { postUser } from '../services/UserService';
 
 function Registration() {
 
@@ -17,9 +18,11 @@ function Registration() {
 
     }
 
+    let navigate = useNavigate();
+
     async function handleSubmit() {
         try {
-            const result = await postData('endpoint', formData);
+            const result = await postUser('endpoint', formData);
         } catch (error) {
             console.error('Error posting data:', error);
         }
